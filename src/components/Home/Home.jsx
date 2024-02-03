@@ -11,7 +11,7 @@ const Home = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/accounts/${user.email}`
+        `https://manage-accounts-server.vercel.app/accounts/${user.email}`
       );
       return res.data;
     },

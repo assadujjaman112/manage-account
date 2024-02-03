@@ -16,7 +16,7 @@ const EditProfile = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    axios.patch(`http://localhost:5000/accounts/${user.email}`,data)
+    axios.patch(`https://manage-accounts-server.vercel.app/accounts/${user.email}`,data)
     .then(res => {
         if(res.data.modifiedCount >0){
             navigate("/");

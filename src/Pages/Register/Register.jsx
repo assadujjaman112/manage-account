@@ -28,7 +28,7 @@ const Register = () => {
         updateUserProfile(data.name, data.image).then(() => {
           console.log("Updated user Info");
           reset();
-          axios.post("http://localhost:5000/accounts", createdUser).then((data) => {
+          axios.post("https://manage-accounts-server.vercel.app/accounts", createdUser).then((data) => {
             console.log(data);
           });
           Swal.fire({
