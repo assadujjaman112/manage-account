@@ -3,6 +3,8 @@ import MainLayout from "../Layouts/MainLayout";
 import Home from "../components/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import EditProfile from "../components/EditProfile/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,7 @@ const router = createBrowserRouter([
     children : [
         {
             path : "/",
-            element: <Home></Home>
+            element: <PrivateRoute><Home></Home></PrivateRoute>
         },
         {
             path : "/login",
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
         {
             path : "/signUp",
             element : <Register></Register>
+        },
+        {
+          path : "/updateProfile",
+          element : <EditProfile></EditProfile>
         }
     ]
   },

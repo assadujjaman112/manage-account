@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -18,11 +20,20 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        const createdUser = {
+          name : data.name,
+          email : data.email,
+          image : data.image,
+        }
         updateUserProfile(data.name, data.image).then(() => {
           console.log("Updated user Info");
+          reset();
+          axios.post("http://localhost:5000/accounts", createdUser).then((data) => {
+            console.log(data);
+          });
           Swal.fire({
             title: "Good job!",
-            text: "You clicked the button!",
+            text: "You created an account",
             icon: "success",
           });
         });
